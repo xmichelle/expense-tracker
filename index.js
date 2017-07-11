@@ -14,14 +14,14 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
-// app.get('/expenditures', (req, res) => {
-//   knex
-//     .select('*')
-//     .from('expenditures')
-//     .then((data) => {
-//       res.json(data)
-//     })
-// })
+app.get('/expenditures', (req, res) => {
+  knex
+    .select('*')
+    .from('expenditures')
+    .then((data) => {
+      res.json(data)
+    })
+})
 
 app.post('/expenditures', (req, res) => {
   const expenseData = req.body
