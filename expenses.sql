@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS expenditures;
+
 CREATE TABLE expenditures (
   id                 serial,
   category_id        integer,
