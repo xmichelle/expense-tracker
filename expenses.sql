@@ -7,3 +7,5 @@ CREATE TABLE expenditures (
 );
 
 /*SELECT TO_CHAR(date, 'Mon dd, yyyy');*/
+
+SELECT * FROM expenditures
