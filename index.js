@@ -17,7 +17,8 @@ app.use(bodyParser.json())
 app.get('/expenditures', (req, res) => {
   knex
     .select('*')
-    .from('expenditures')
+    .from('categories')
+    .join('expenditures', 'expenditures.category_id', '=', 'categories.id')
     .then((data) => {
       res.json(data)
     })
