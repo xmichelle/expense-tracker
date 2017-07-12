@@ -1,11 +1,11 @@
 DROP TABLE IF EXISTS categories;
 
 CREATE TABLE categories (
-  id      serial,
-  name    text
+  id          serial,
+  category    text
 );
 
-INSERT INTO categories (name)
+INSERT INTO categories (category)
 VALUES
   ('Transportation'),
   ('Leisure'),

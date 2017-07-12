@@ -4,11 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
   <link href="styles.css" rel="stylesheet" />
   <title>Expense Tracker</title>
 </head>
 <body>
-  <h2>Test test!</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" id="button">
+        <button type="button" class="btn btn-info" id="expense-button">+ Add Expense</button>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="form">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Category</label>
+        <div class="btn-group col-sm-10">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Options <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Transportation</a></li>
+            <li><a href="#">Leisure</a></li>
+            <li><a href="#">Groceries</a></li>
+            <li><a href="#">Rent</a></li>
+            <li><a href="#">Utilities</a></li>
+            <li><a href="#">Health</a></li>
+            <li><a href="#">Education</a></li>
+            <li><a href="#">Miscellaneous</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="expenseItem" class="col-sm-2 control-label">Expense</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="expenseItem" placeholder="Note">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="date" class="col-sm-2 control-label">Date</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="date" placeholder="mm/dd/yyyy">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="amount" class="col-sm-2 control-label">Amount</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="text" class="form-control" aria-label="Amount" id="amount">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-9 col-sm-10">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="main.js"></script>
 </body>
 </html>

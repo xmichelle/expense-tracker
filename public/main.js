@@ -22,7 +22,3 @@ fetch('/expenditures', {
 })
   .then(res => res.json())
   .then(data => console.log(data))
-
-
-// Review fetch
-// Look into config as second argument
