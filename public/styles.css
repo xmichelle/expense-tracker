@@ -1,0 +1,10 @@
+
+#expense-form {
+  margin: 0 auto;
+  padding: 30px 45px 20px;
+  position: relative;
+  top: 40px;
+  width: 470px;
+  box-sizing: border-box;
+  background: rgba(211, 211, 211, 0.15);
+}
