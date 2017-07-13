@@ -40,4 +40,6 @@ $expenseForm.addEventListener('submit', (event) => {
   })
     .then(res => res.json())
     .then(data => console.log(data)) // to view history of expenses, create a .then function that appends info to the document.
+
+  $expenseForm.reset()
 })
