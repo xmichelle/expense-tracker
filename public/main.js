@@ -24,8 +24,8 @@ $expenseForm.addEventListener('submit', (event) => {
     },
     body: JSON.stringify(newExpense)
   })
-      .then(res => res.json())
-      .then(data => console.log(data))
+  .then(res => res.json())
+  .then(data => console.log(data))
 
   $expenseForm.reset()
 })
