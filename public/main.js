@@ -1,18 +1,4 @@
 
-// fetch('/expenditures')
-//   .then(res => res.json())
-//   .then(jsonData => {
-//     console.log(jsonData)
-//     // jsonData.forEach(data => {
-//     //   const $div = document.createElement('div')
-//     //   $div.textContent = data
-//     //   document.body.appendChild($div)
-//     // })
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
-
 const $expenseForm = document.querySelector('#expense-form')
 
 $expenseForm.addEventListener('submit', (event) => {
@@ -38,8 +24,8 @@ $expenseForm.addEventListener('submit', (event) => {
     },
     body: JSON.stringify(newExpense)
   })
-    .then(res => res.json())
-    .then(data => console.log(data)) // to view history of expenses, create a .then function that appends info to the document.
+      .then(res => res.json())
+      .then(data => console.log(data))
 
   $expenseForm.reset()
 })

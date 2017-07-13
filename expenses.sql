@@ -5,10 +5,6 @@ CREATE TABLE expenditures (
   user_id            integer,
   category_id        integer,
   item               text,
-  transaction_date   numeric,
+  transaction_date   bigint,
   amount             numeric(1000, 2)
 );
-
-/*SELECT TO_CHAR(date, 'Mon dd, yyyy');*/
-
-/*SELECT * FROM expenditures;*/

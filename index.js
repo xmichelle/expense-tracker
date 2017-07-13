@@ -31,7 +31,6 @@ app.post('/expenditures', (req, res) => {
     .into('expenditures')
     .returning('*')
     .then((data) => {
-      console.log(data)
       res.status(201).json(data)
     })
 })
