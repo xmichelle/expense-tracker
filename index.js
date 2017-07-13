@@ -29,8 +29,10 @@ app.post('/expenditures', (req, res) => {
   knex
     .insert(expenseData)
     .into('expenditures')
-    .then(() => {
-      res.sendStatus(201)
+    .returning('*')
+    .then((data) => {
+      console.log(data)
+      res.status(201).json(data)
     })
 })
 
