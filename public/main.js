@@ -1,5 +1,22 @@
 
 const $expenseForm = document.querySelector('#expense-form')
+const $expenseTable = document.querySelector('#expense-table')
+
+function renderExpenseData(data) {
+  return
+}
+
+fetch('/expenditures')
+  .then(res => res.json()) // parse to JS object
+  .then(jsonData => {
+    console.log(jsonData)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+
+
+
 
 $expenseForm.addEventListener('submit', (event) => {
   event.preventDefault()
@@ -25,7 +42,17 @@ $expenseForm.addEventListener('submit', (event) => {
     body: JSON.stringify(newExpense)
   })
   .then(res => res.json())
-  .then(data => console.log(data))
-
+  .then(jsonData => {
+    console.log(jsonData)
+    jsonData.forEach(data => {
+      console.log(data)
+      // const $div = document.createElement('div')
+      // $div.textContent = data
+      // $expenseTable.appendChild($div)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
   $expenseForm.reset()
 })
