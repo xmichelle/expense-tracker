@@ -8,3 +8,12 @@
   box-sizing: border-box;
   background: rgba(211, 211, 211, 0.15);
 }
+
+th,
+td {
+  text-align: center;
+}
+
+#expense-table {
+  margin-top: 80px;
+}

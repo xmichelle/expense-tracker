@@ -13,7 +13,7 @@ function convertDate(date) {
   return convertedDate
 }
 
-const $expenseTable = document.querySelector('.expense-table')
+const $expenseTable = document.querySelector('#expense-table')
 const $expenseBody = document.querySelector('.expense-body')
 
 
@@ -43,7 +43,6 @@ window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
     .then(res => res.json())
     .then(jsonData => {
-      console.log(jsonData)
       jsonData
         .map(renderExpenseData)
         .forEach(data => {
