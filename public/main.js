@@ -1,6 +1,21 @@
 
+function convertDate(date) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  const numericalDate = Number(date)
+  const dateFormat = new Date(numericalDate)
+  const year = dateFormat.getUTCFullYear()
+  const day = dateFormat.getUTCDate()
+  const month = months[dateFormat.getUTCMonth()]
+
+  const convertedDate = month + ' ' + day + ',' + ' ' + year
+
+  return convertedDate
+}
+
 const $expenseTable = document.querySelector('.expense-table')
 const $expenseBody = document.querySelector('.expense-body')
+
 
 function renderExpenseData(data) {
   const $container = document.createElement('tr')
@@ -11,7 +26,7 @@ function renderExpenseData(data) {
 
   $categoryData.textContent = data.category_id
   $expenseData.textContent = data.item
-  $dateData.textContent = data.transaction_date
+  $dateData.textContent = convertDate(data.transaction_date)
   $amountData.textContent = data.amount
 
   $container.appendChild($categoryData)
@@ -21,10 +36,12 @@ function renderExpenseData(data) {
 
   return $container
 }
+// Q: How to get the category name from category id?
+
 
 window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
-    .then(res => res.json()) // parse to JS object
+    .then(res => res.json())
     .then(jsonData => {
       console.log(jsonData)
       jsonData
