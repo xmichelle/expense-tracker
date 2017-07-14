@@ -24,7 +24,7 @@ function renderExpenseData(data) {
   const $dateData = document.createElement('td')
   const $amountData = document.createElement('td')
 
-  $categoryData.textContent = data.category_id
+  $categoryData.textContent = data.category
   $expenseData.textContent = data.item
   $dateData.textContent = convertDate(data.transaction_date)
   $amountData.textContent = '$ ' + data.amount
