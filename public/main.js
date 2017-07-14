@@ -1,33 +1,6 @@
 
-const $expenseForm = document.querySelector('#expense-form')
 const $expenseTable = document.querySelector('.expense-table')
-const $expenseHeader = document.querySelector('.expense-head')
 const $expenseBody = document.querySelector('.expense-body')
-
-function renderExpenseHeaders(header) {
-  const $container = document.createElement('tr')
-  const $categoryHead = document.createElement('th')
-  const $expenseHead = document.createElement('th')
-  const $dateHead = document.createElement('th')
-  const $amountHead = document.createElement('th')
-
-  $categoryHead.setAttribute('scope', 'col')
-  $expenseHead.setAttribute('scope', 'col')
-  $dateHead.setAttribute('scope', 'col')
-  $amountHead.setAttribute('scope', 'col')
-
-  $categoryHead.textContent = 'Category'
-  $expenseHead.textContent = 'Expenses'
-  $dateHead.textContent = 'Transaction Date'
-  $amountHead.textContent = 'Amount'
-
-  $container.appendChild($categoryHead)
-  $container.appendChild($expenseHead)
-  $container.appendChild($dateHead)
-  $container.appendChild($amountHead)
-
-  return $container
-}
 
 function renderExpenseData(data) {
   const $container = document.createElement('tr')
@@ -49,17 +22,24 @@ function renderExpenseData(data) {
   return $container
 }
 
-// fetch('/expenditures')
-//   .then(res => res.json()) // parse to JS object
-//   .then(jsonData => {
-//     console.log(jsonData)
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
+window.addEventListener('DOMContentLoaded', function (event) {
+  fetch('/expenditures')
+    .then(res => res.json()) // parse to JS object
+    .then(jsonData => {
+      console.log(jsonData)
+      jsonData
+        .map(renderExpenseData)
+        .forEach(data => {
+          $expenseBody.appendChild(data)
+        })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 
 
-
+const $expenseForm = document.querySelector('#expense-form')
 
 $expenseForm.addEventListener('submit', (event) => {
   event.preventDefault()
