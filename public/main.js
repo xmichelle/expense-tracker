@@ -27,7 +27,7 @@ function renderExpenseData(data) {
   $categoryData.textContent = data.category_id
   $expenseData.textContent = data.item
   $dateData.textContent = convertDate(data.transaction_date)
-  $amountData.textContent = data.amount
+  $amountData.textContent = '$ ' + data.amount
 
   $container.appendChild($categoryData)
   $container.appendChild($expenseData)
