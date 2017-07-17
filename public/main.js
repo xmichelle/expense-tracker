@@ -1,8 +1,8 @@
 
-function convertDate(date) {
+function convertDate(timestamp) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-  const numericalDate = Number(date)
+  const numericalDate = Number(timestamp)
   const dateFormat = new Date(numericalDate)
   const year = dateFormat.getUTCFullYear()
   const day = dateFormat.getUTCDate()
@@ -79,8 +79,8 @@ $expenseForm.addEventListener('submit', (event) => {
     body: JSON.stringify(newExpense)
   })
   .then(res => res.json())
-  .then(jsonData => {
-    $expenseBody.appendChild(renderExpenseData(jsonData))
+  .then(data => {
+    $expenseBody.appendChild(renderExpenseData(data))
   })
   .catch(err => {
     console.log(err)
