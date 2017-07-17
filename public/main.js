@@ -82,14 +82,12 @@ $expenseForm.addEventListener('submit', (event) => {
   })
   .then(res => res.json())
   .then(jsonData => {
-    console.log(jsonData)
-    jsonData.forEach(data => {
-      console.log(data)
-      // const $div = document.createElement('div')
-      // $div.textContent = data
-      // $expenseTable.appendChild($div)
-    })
-  })
+    jsonData
+      .map(renderExpenseData)
+      .forEach(data => {
+        $expenseBody.appendChild(data)
+      })
+  })    
   .catch(err => {
     console.log(err)
   })

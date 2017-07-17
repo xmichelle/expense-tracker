@@ -14,6 +14,13 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
+function getCategoryName() {
+  knex
+    .select('*')
+    .from('categories')
+    .join('expenditures', 'expenditures.category_id', '=', 'categories.id')
+}
+
 app.get('/expenditures', (req, res) => {
   knex
     .select('*')
@@ -31,6 +38,8 @@ app.post('/expenditures', (req, res) => {
     .into('expenditures')
     .returning('*')
     .then((data) => {
+      // getCategoryName()
+      // call the getCategory function
       res.status(201).json(data)
     })
 })
@@ -38,3 +47,5 @@ app.post('/expenditures', (req, res) => {
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
+
+// Create a function that uses knex to obtain the category name from the category table
