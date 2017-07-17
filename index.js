@@ -14,18 +14,19 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
-function getCategoryName() {
-  knex
+function getCategoryName(id) {
+  return knex
     .select('*')
     .from('categories')
-    .join('expenditures', 'expenditures.category_id', '=', 'categories.id')
+    .where('id', id)
 }
 
 app.get('/expenditures', (req, res) => {
   knex
     .select('*')
-    .from('categories')
-    .join('expenditures', 'expenditures.category_id', '=', 'categories.id')
+    .from('expenditures')
+    .join('categories', 'expenditures.category_id', '=', 'categories.id')
+    .orderBy('expenditures.id', 'asc')
     .then((data) => {
       res.json(data)
     })
@@ -38,14 +39,17 @@ app.post('/expenditures', (req, res) => {
     .into('expenditures')
     .returning('*')
     .then((data) => {
-      // getCategoryName()
-      // call the getCategory function
-      res.status(201).json(data)
+      // data returns an array with an object of properties and values based on our form submission
+      getCategoryName(data[0].category_id) // returns an object with the id and category name
+        .then((categoryName) => {
+          const obj = data[0]
+          obj.category = categoryName[0].category
+          const copyObj = Object.assign({}, obj)
+          res.status(201).json(copyObj)
+        })
     })
 })
 
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
-
-// Create a function that uses knex to obtain the category name from the category table

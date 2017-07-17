@@ -16,7 +16,6 @@ function convertDate(date) {
 const $expenseTable = document.querySelector('#expense-table')
 const $expenseBody = document.querySelector('.expense-body')
 
-
 function renderExpenseData(data) {
   const $container = document.createElement('tr')
   const $categoryData = document.createElement('td')
@@ -36,7 +35,6 @@ function renderExpenseData(data) {
 
   return $container
 }
-// Q: How to get the category name from category id?
 
 
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -82,12 +80,8 @@ $expenseForm.addEventListener('submit', (event) => {
   })
   .then(res => res.json())
   .then(jsonData => {
-    jsonData
-      .map(renderExpenseData)
-      .forEach(data => {
-        $expenseBody.appendChild(data)
-      })
-  })    
+    $expenseBody.appendChild(renderExpenseData(jsonData))
+  })
   .catch(err => {
     console.log(err)
   })
