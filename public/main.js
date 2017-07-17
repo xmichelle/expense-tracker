@@ -42,36 +42,31 @@ function renderExpenseData(data) {
 
 const $test = document.querySelector('.test')
 function totalExpense(data) {
-  // grab amount data from expenses table
-  // convert amount to number using Number()
-  // add all the amount data
-  // append/update to the document
   let total = 0
   for (let i = 0; i < data.length; i++) {
     const amount = Number(data[i].amount)
     total += amount
   }
-   return total
+  return total
 }
 
-// function appendTotalExpense() {
-//
-// }
+function appendTotalExpense(total) {
+  $test.textContent = '$ ' + total
+}
 
-const expenses = []
+const emptyExpenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
     .then(res => res.json())
     .then(jsonData => {
-      // expenses.push(jsonData)
-      // expenses
-      jsonData
+      const expenses = emptyExpenses.concat(jsonData)
+      expenses
         .map(renderExpenseData)
         .forEach(data => {
           $expenseBody.appendChild(data)
         })
-
-      // const total = totalExpense(expenses)
+      const total = totalExpense(expenses)
+      appendTotalExpense(total)
     })
     .catch(err => {
       console.log(err)
