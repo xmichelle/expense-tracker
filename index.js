@@ -42,9 +42,8 @@ app.post('/expenditures', (req, res) => {
       // data returns an array with an object of properties and values based on our form submission
       getCategoryName(data[0].category_id) // returns an object with the id and category name
         .then((categoryName) => {
-          const categoryData = data[0]
-          categoryData.category = categoryName[0].category
-          const copyCategoryData = Object.assign({}, categoryData)
+          const copyCategoryData = Object.assign({}, data[0])
+          copyCategoryData.category = categoryName[0].category
           res.status(201).json(copyCategoryData)
         })
     })
