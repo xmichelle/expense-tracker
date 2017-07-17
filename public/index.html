@@ -9,6 +9,7 @@
   <title>Expense Tracker</title>
 </head>
 <body>
+  <img class="background" src="images/background2-dark.jpg"/>
   <div class="container">
     <form class="form-horizontal" id="expense-form">
       <div class="form-group">
@@ -54,6 +55,20 @@
         </div>
       </div>
     </form>
+  </div>
+  <div class="container">
+    <table class="table table-bordered table-striped" id="expense-table">
+      <thead id="expense-head">
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Expenses</th>
+          <th scope="col">Transaction Date</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody class="expense-body">
+      </tbody>
+    </table>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

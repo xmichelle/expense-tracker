@@ -14,11 +14,19 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
+function getCategoryName(id) {
+  return knex
+    .select('*')
+    .from('categories')
+    .where('id', id)
+}
+
 app.get('/expenditures', (req, res) => {
   knex
     .select('*')
-    .from('categories')
-    .join('expenditures', 'expenditures.category_id', '=', 'categories.id')
+    .from('expenditures')
+    .join('categories', 'expenditures.category_id', '=', 'categories.id')
+    .orderBy('expenditures.id', 'asc')
     .then((data) => {
       res.json(data)
     })
@@ -31,7 +39,12 @@ app.post('/expenditures', (req, res) => {
     .into('expenditures')
     .returning('*')
     .then((data) => {
-      res.status(201).json(data)
+      getCategoryName(data[0].category_id)
+        .then((categoryName) => {
+          const copyCategoryData = Object.assign({}, data[0])
+          copyCategoryData.category = categoryName[0].category
+          res.status(201).json(copyCategoryData)
+        })
     })
 })
 

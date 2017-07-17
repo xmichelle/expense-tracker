@@ -1,4 +1,18 @@
 
+.background {
+  z-index: -100;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  background-color: #000;
+  position: fixed;
+  opacity: 0.7;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 #expense-form {
   margin: 0 auto;
   padding: 30px 45px 20px;
@@ -6,5 +20,16 @@
   top: 40px;
   width: 470px;
   box-sizing: border-box;
-  background: rgba(211, 211, 211, 0.15);
+  background: rgba(211, 211, 211, 0.8);
+}
+
+th,
+td {
+  text-align: center;
+}
+
+#expense-table {
+  margin-top: 80px;
+  background-color: rgba(211, 211, 211, 0.95);
+  border: 2px outset darkgrey;
 }
