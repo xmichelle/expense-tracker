@@ -36,30 +36,47 @@ function renderExpenseData(data) {
   return $container
 }
 
+// use credit card icon for transactions
+// use piggy bank icon for income
+// use minus sign icon for expenses
 
+const $test = document.querySelector('.test')
+function totalExpense(data) {
+  // grab amount data from expenses table
+  // convert amount to number using Number()
+  // add all the amount data
+  // append/update to the document
+  let total = 0
+  for (let i = 0; i < data.length; i++) {
+    const amount = Number(data[i].amount)
+    total += amount
+  }
+   return total
+}
+
+// function appendTotalExpense() {
+//
+// }
+
+const expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
     .then(res => res.json())
     .then(jsonData => {
+      // expenses.push(jsonData)
+      // expenses
       jsonData
         .map(renderExpenseData)
         .forEach(data => {
           $expenseBody.appendChild(data)
         })
+
+      // const total = totalExpense(expenses)
     })
     .catch(err => {
       console.log(err)
     })
 })
-
-// use credit card icon for transactions
-// use piggy bank icon for income
-// use minus sign icon for expenses
-
-function totalExpense(data) {
-
-}
-
 
 const $expenseForm = document.querySelector('#expense-form')
 
