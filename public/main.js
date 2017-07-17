@@ -52,6 +52,14 @@ window.addEventListener('DOMContentLoaded', function (event) {
     })
 })
 
+// use credit card icon for transactions
+// use piggy bank icon for income
+// use minus sign icon for expenses
+
+function totalExpense(data) {
+
+}
+
 
 const $expenseForm = document.querySelector('#expense-form')
 
