@@ -55,6 +55,12 @@ function appendTotalExpense(total) {
   $test.textContent = '$ ' + total
 }
 
+const $testTotal = document.querySelector('.number-test')
+function appendTotalNumber(data) {
+  const total = data.length
+  $testTotal.textContent = total
+}
+
 
 let expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -69,6 +75,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         })
       const total = totalExpense(expenses)
       appendTotalExpense(total)
+      appendTotalNumber(expenses)
     })
     .catch(err => {
       console.log(err)
