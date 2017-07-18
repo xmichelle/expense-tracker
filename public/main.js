@@ -36,10 +36,6 @@ function renderExpenseData(data) {
   return $container
 }
 
-// use credit card icon for transactions
-// use piggy bank icon for income
-// use minus sign icon for expenses
-
 function totalExpense(data) {
   let total = 0
   for (let i = 0; i < data.length; i++) {
@@ -50,15 +46,15 @@ function totalExpense(data) {
 }
 
 
-const $test = document.querySelector('.expense-test')
+const $totalExpenses = document.querySelector('#expense-total')
 function appendTotalExpense(total) {
-  $test.textContent = '$ ' + total
+  $totalExpenses.textContent = '$ ' + total
 }
 
-const $testTotal = document.querySelector('.number-test')
+const $transactions = document.querySelector('#transactions')
 function appendTotalNumber(data) {
   const total = data.length
-  $testTotal.textContent = total
+  $transactions.textContent = total
 }
 
 
