@@ -113,6 +113,7 @@ $expenseForm.addEventListener('submit', (event) => {
     expenses.push(data)
     const newTotal = totalExpense(expenses)
     appendTotalExpense(newTotal)
+    appendTotalNumber(expenses)
   })
   .catch(err => {
     console.log(err)
