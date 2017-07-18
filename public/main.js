@@ -40,7 +40,6 @@ function renderExpenseData(data) {
 // use piggy bank icon for income
 // use minus sign icon for expenses
 
-const $test = document.querySelector('.test')
 function totalExpense(data) {
   let total = 0
   for (let i = 0; i < data.length; i++) {
@@ -50,16 +49,19 @@ function totalExpense(data) {
   return total
 }
 
+
+const $test = document.querySelector('.expense-test')
 function appendTotalExpense(total) {
   $test.textContent = '$ ' + total
 }
 
-const emptyExpenses = []
+
+let expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
     .then(res => res.json())
     .then(jsonData => {
-      const expenses = emptyExpenses.concat(jsonData)
+      expenses = expenses.concat(jsonData)
       expenses
         .map(renderExpenseData)
         .forEach(data => {
@@ -101,6 +103,9 @@ $expenseForm.addEventListener('submit', (event) => {
   .then(res => res.json())
   .then(data => {
     $expenseBody.appendChild(renderExpenseData(data))
+    expenses.push(data)
+    const newTotal = totalExpense(expenses)
+    appendTotalExpense(newTotal)
   })
   .catch(err => {
     console.log(err)
