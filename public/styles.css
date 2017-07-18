@@ -1,7 +1,13 @@
 
 body {
   padding-top: 70px;
+  background-color: rgb(240, 248, 255);
 }
+
+/*
+ghost white (248, 248, 255)
+alice blue (240, 248, 255)
+*/
 
 #expense-form {
   margin: 0 auto;
