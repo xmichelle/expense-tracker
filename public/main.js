@@ -69,21 +69,27 @@ function updateTotals(expenses) {
 }
 
 
-const $radios = document.querySelectorAll('input[name="form"]')
+// const $radios = document.querySelectorAll('input[name="form"]')
+//
+// for (let i = 0; i < $radios.length; i++) {
+//   $radios[i].addEventListener('change', (event) => {
+//     changeView(event.target.value)
+//   })
+// }
 
-for (let i = 0; i < $radios.length; i++) {
-  $radios[i].addEventListener('change', (event) => {
-    // call function with event.target.value
-    console.log(event.target.value)
-  })
-}
+const $forms = document.querySelectorAll('.form-horizontal')
 
 function changeView(value) {
-  if (value === 'expense') {
-    // remove hidden class from expense form
-  }
-  else if (value === 'income') {
-    // remove hidden class from income form and add hidden class to expense form
+  for (let i = 0; i < $forms.length; i++) {
+    if (value === $forms[i].id) {
+      $forms[i].classList.remove('hidden')
+    }
+    else if (value === $forms[i].id) {
+      $forms[i].classList.remove('hidden')
+    }
+    else {
+      $forms[i].classList.add('hidden')
+    }
   }
 }
 
