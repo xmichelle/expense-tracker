@@ -47,16 +47,23 @@ function totalExpense(data) {
 
 
 const $totalExpenses = document.querySelector('#expense-total')
+
 function appendTotalExpense(total) {
   $totalExpenses.textContent = '$ ' + total
 }
 
 const $transactions = document.querySelector('#transactions')
+
 function appendTotalNumber(data) {
   const total = data.length
   $transactions.textContent = total
 }
 
+function updateTotals(expenses) {
+  const total = totalExpense(expenses)
+  appendTotalExpense(total)
+  appendTotalNumber(expenses)
+}
 
 let expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
@@ -69,9 +76,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         .forEach(data => {
           $expenseBody.appendChild(data)
         })
-      const total = totalExpense(expenses)
-      appendTotalExpense(total)
-      appendTotalNumber(expenses)
+      updateTotals(expenses)
     })
     .catch(err => {
       console.log(err)
@@ -107,9 +112,7 @@ $expenseForm.addEventListener('submit', (event) => {
   .then(data => {
     $expenseBody.appendChild(renderExpenseData(data))
     expenses.push(data)
-    const newTotal = totalExpense(expenses)
-    appendTotalExpense(newTotal)
-    appendTotalNumber(expenses)
+    updateTotals(expenses)
   })
   .catch(err => {
     console.log(err)
