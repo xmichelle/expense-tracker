@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const path = require('path')
+const { getCategoryName } = require('./database.js')
 
 const knex = require('knex')({
   dialect: 'pg',
@@ -13,13 +14,6 @@ const staticMiddleware = express.static(publicPath)
 
 app.use(staticMiddleware)
 app.use(bodyParser.json())
-
-function getCategoryName(id) {
-  return knex
-    .select('*')
-    .from('categories')
-    .where('id', id)
-}
 
 app.get('/expenditures', (req, res) => {
   knex

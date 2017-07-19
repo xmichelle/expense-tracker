@@ -36,22 +36,52 @@ function renderExpenseData(data) {
   return $container
 }
 
+function totalExpense(data) {
+  let total = 0
+  for (let i = 0; i < data.length; i++) {
+    const amount = Number(data[i].amount)
+    total += amount
+  }
+  return total
+}
 
+
+const $totalExpenses = document.querySelector('#expense-total')
+
+function appendTotalExpense(total) {
+  $totalExpenses.textContent = '$ ' + total
+}
+
+const $transactions = document.querySelector('#transactions')
+
+function appendTotalNumber(data) {
+  const total = data.length
+  $transactions.textContent = total
+}
+
+function updateTotals(expenses) {
+  const total = totalExpense(expenses)
+  appendTotalExpense(total)
+  appendTotalNumber(expenses)
+}
+
+let expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
     .then(res => res.json())
     .then(jsonData => {
-      jsonData
+      expenses = expenses.concat(jsonData)
+      expenses
         .map(renderExpenseData)
         .forEach(data => {
           $expenseBody.appendChild(data)
         })
+      updateTotals(expenses)
     })
     .catch(err => {
       console.log(err)
     })
 })
-
 
 const $expenseForm = document.querySelector('#expense-form')
 
@@ -81,6 +111,8 @@ $expenseForm.addEventListener('submit', (event) => {
   .then(res => res.json())
   .then(data => {
     $expenseBody.appendChild(renderExpenseData(data))
+    expenses.push(data)
+    updateTotals(expenses)
   })
   .catch(err => {
     console.log(err)

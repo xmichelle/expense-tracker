@@ -1,16 +1,27 @@
 
-.background {
-  z-index: -100;
-  min-height: 100%;
-  width: 100%;
-  height: auto;
-  background-color: #000;
-  position: fixed;
-  opacity: 0.7;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+body {
+  padding-top: 70px;
+  background-color: rgba(191, 239, 255, 0.1);
+}
+
+.media-body {
+  text-align: center;
+}
+
+.heading {
+  margin: 30px 10px 10px;
+  box-sizing: border-box;
+  width: 220px;
+  height: 65px;
+  border: 1.5px double slategray;
+  padding: 10px;
+}
+
+#heading {
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  width: 750px;
 }
 
 #expense-form {
@@ -20,7 +31,7 @@
   top: 40px;
   width: 470px;
   box-sizing: border-box;
-  background: rgba(211, 211, 211, 0.8);
+  background: rgba(211, 211, 211, 0.5);
 }
 
 th,
@@ -30,6 +41,6 @@ td {
 
 #expense-table {
   margin-top: 80px;
-  background-color: rgba(211, 211, 211, 0.95);
+  background-color: rgba(211, 211, 211, 0.6);
   border: 2px outset darkgrey;
 }
