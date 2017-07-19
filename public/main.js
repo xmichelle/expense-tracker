@@ -69,13 +69,13 @@ function updateTotals(expenses) {
 }
 
 
-// const $radios = document.querySelectorAll('input[name="form"]')
-//
-// for (let i = 0; i < $radios.length; i++) {
-//   $radios[i].addEventListener('change', (event) => {
-//     changeView(event.target.value)
-//   })
-// }
+const $radios = document.querySelectorAll('input[name="form"]')
+
+for (let i = 0; i < $radios.length; i++) {
+  $radios[i].addEventListener('change', (event) => {
+    changeView(event.target.value)
+  })
+}
 
 const $forms = document.querySelectorAll('.form-horizontal')
 
