@@ -36,6 +36,7 @@ function renderExpenseData(data) {
   return $container
 }
 
+
 function totalExpense(data) {
   let total = 0
   for (let i = 0; i < data.length; i++) {
@@ -52,6 +53,7 @@ function appendTotalExpense(total) {
   $totalExpenses.textContent = '$ ' + total
 }
 
+
 const $transactions = document.querySelector('#transactions')
 
 function appendTotalNumber(data) {
@@ -59,11 +61,32 @@ function appendTotalNumber(data) {
   $transactions.textContent = total
 }
 
+
 function updateTotals(expenses) {
   const total = totalExpense(expenses)
   appendTotalExpense(total)
   appendTotalNumber(expenses)
 }
+
+
+const $radios = document.querySelectorAll('input[name="form"]')
+
+for (let i = 0; i < $radios.length; i++) {
+  $radios[i].addEventListener('change', (event) => {
+    // call function with event.target.value
+    console.log(event.target.value)
+  })
+}
+
+function changeView(value) {
+  if (value === 'expense') {
+    // remove hidden class from expense form
+  }
+  else if (value === 'income') {
+    // remove hidden class from income form and add hidden class to expense form
+  }
+}
+
 
 let expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
