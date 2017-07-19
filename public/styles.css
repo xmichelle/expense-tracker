@@ -34,6 +34,15 @@ body {
   background: rgba(211, 211, 211, 0.5);
 }
 
+.form-horizontal .radio,
+.form-horizontal .radio-inline {
+  margin-bottom: 20px;
+}
+
+#radio-expense {
+  margin-left: 30px;
+}
+
 th,
 td {
   text-align: center;
