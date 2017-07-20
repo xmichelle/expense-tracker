@@ -36,7 +36,6 @@ function renderExpenseData(data) {
   return $container
 }
 
-
 function totalExpense(data) {
   let total = 0
   for (let i = 0; i < data.length; i++) {
@@ -56,7 +55,7 @@ function appendTotalExpense(total) {
 
 const $transactions = document.querySelector('#transactions')
 
-function appendTotalNumber(data) {
+function appendTotalTrans(data) {
   const total = data.length
   $transactions.textContent = total
 }
@@ -65,7 +64,7 @@ function appendTotalNumber(data) {
 function updateTotals(expenses) {
   const total = totalExpense(expenses)
   appendTotalExpense(total)
-  appendTotalNumber(expenses)
+  appendTotalTrans(expenses)
 }
 
 
@@ -94,6 +93,16 @@ function changeView(value) {
 }
 
 
+// function formatAmounts(amount, type) {
+//   if (type === 'expense') {
+//     return (amount * -1)
+//   }
+//   else {
+//     return amount
+//   }
+// }
+
+
 let expenses = []
 window.addEventListener('DOMContentLoaded', function (event) {
   fetch('/expenditures')
@@ -114,6 +123,44 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 const $expenseForm = document.querySelector('#expense-form')
 
+// for (let i = 0; i < $forms.length; i++) {
+//   $forms[i].addEventListener('submit'), (event) => {
+//     event.preventDefault()
+//     console.log('Submitting form')
+//
+//     const expenseData = new FormData($forms[i])
+//
+//     const date = new Date(expenseData.get('transactionDate'))
+//     const numericDate = date.getTime()
+//
+//     const newExpense = {
+//       category_id: expenseData.get('category'),
+//       item: expenseData.get('expenseItem'),
+//       transaction_date: numericDate,
+//       amount: expenseData.get('amount'),
+//       type: 'expense'
+//     }
+//
+//     fetch('/expenditures', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(newExpense)
+//     })
+//     .then(res => res.json())
+//     .then(data => {
+//       $expenseBody.appendChild(renderExpenseData(data))
+//       expenses.push(data)
+//       updateTotals(expenses)
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+//     $forms[i].reset()
+//   }
+// }
+
 $expenseForm.addEventListener('submit', (event) => {
   event.preventDefault()
   console.log('Submitting form')
@@ -127,7 +174,8 @@ $expenseForm.addEventListener('submit', (event) => {
     category_id: expenseData.get('category'),
     item: expenseData.get('expenseItem'),
     transaction_date: numericDate,
-    amount: expenseData.get('amount')
+    amount: expenseData.get('amount'),
+    // type: 'expense'
   }
 
   fetch('/expenditures', {
