@@ -36,10 +36,27 @@ function renderExpenseData(data) {
   return $container
 }
 
-function totalExpense(data) {
+
+function organizeAmounts(data) {
+  const amounts = { incomeAmounts: [], expenseAmounts: [] }
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].type === 'income') {
+      const amount = Number(data[i].amount)
+      amounts.incomeAmounts.push(amount)
+    }
+    else if (data[i].type === 'expense') {
+      const amount = Number(data[i].amount)
+      amounts.expenseAmounts.push(amount)
+    }
+  }
+  return amounts
+}
+
+
+function sum(data) {
   let total = 0
   for (let i = 0; i < data.length; i++) {
-    const amount = Number(data[i].amount)
+    const amount = data[i]
     total += amount
   }
   return total
@@ -52,6 +69,12 @@ function appendTotalExpense(total) {
   $totalExpenses.textContent = '$ ' + total
 }
 
+const $totalIncome = document.querySelector('#income-total')
+
+function appendTotalIncome(total) {
+  $totalIncome.textContent = '$ ' + total
+}
+
 
 const $transactions = document.querySelector('#transactions')
 
@@ -62,10 +85,23 @@ function appendTotalTrans(data) {
 
 
 function updateTotals(expenses) {
-  const total = totalExpense(expenses)
-  appendTotalExpense(total)
+  const filteredAmounts = organizeAmounts(expenses)
+  const expenseTotal = sum(filteredAmounts.expenseAmounts)
+  const incomeTotal = sum(filteredAmounts.incomeAmounts)
+  appendTotalExpense(expenseTotal)
+  appendTotalIncome(incomeTotal)
   appendTotalTrans(expenses)
 }
+
+
+// function formatAmounts(amount, type) {
+//   if (type === 'expense') {
+//     return (amount * -1)
+//   }
+//   else {
+//     return amount
+//   }
+// }
 
 
 const $radios = document.querySelectorAll('input[name="chosen-form"]')
@@ -90,16 +126,6 @@ function changeView(value) {
     }
   }
 }
-
-
-// function formatAmounts(amount, type) {
-//   if (type === 'expense') {
-//     return (amount * -1)
-//   }
-//   else {
-//     return amount
-//   }
-// }
 
 
 let expenses = []
@@ -151,7 +177,6 @@ $transactionForm.addEventListener('submit', (event) => {
   })
   .then(res => res.json())
   .then(data => {
-    console.log(data)
     $expenseBody.appendChild(renderExpenseData(data))
     expenses.push(data)
     updateTotals(expenses)
