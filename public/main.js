@@ -16,7 +16,7 @@ function convertDate(timestamp) {
 const $expenseTable = document.querySelector('#expense-table')
 const $expenseBody = document.querySelector('.expense-body')
 
-function renderExpenseData(data) {
+function renderTransactionData(data) {
   const $container = document.createElement('tr')
   const $categoryData = document.createElement('td')
   const $transactionData = document.createElement('td')
@@ -26,7 +26,12 @@ function renderExpenseData(data) {
   $categoryData.textContent = data.category
   $transactionData.textContent = data.item
   $dateData.textContent = convertDate(data.transaction_date)
-  $amountData.textContent = '$ ' + data.amount
+  if (data.type === 'expense') {
+    $amountData.textContent = '- $ ' + data.amount
+  }
+  else if (data.type === 'income') {
+    $amountData.textContent = '+ $ ' + data.amount
+  }
 
   $container.appendChild($categoryData)
   $container.appendChild($transactionData)
@@ -135,7 +140,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     .then(jsonData => {
       expenses = expenses.concat(jsonData)
       expenses
-        .map(renderExpenseData)
+        .map(renderTransactionData)
         .forEach(data => {
           $expenseBody.appendChild(data)
         })
@@ -177,7 +182,7 @@ $transactionForm.addEventListener('submit', (event) => {
   })
   .then(res => res.json())
   .then(data => {
-    $expenseBody.appendChild(renderExpenseData(data))
+    $expenseBody.appendChild(renderTransactionData(data))
     expenses.push(data)
     updateTotals(expenses)
   })
