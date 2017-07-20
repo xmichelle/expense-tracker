@@ -76,18 +76,17 @@ for (let i = 0; i < $radios.length; i++) {
   })
 }
 
-const $forms = document.querySelectorAll('.form-horizontal')
+const $form = document.querySelector('.form-horizontal')
+const $formChoices = document.querySelectorAll('.form-choice')
 
 function changeView(value) {
-  for (let i = 0; i < $forms.length; i++) {
-    if (value === $forms[i].id) {
-      $forms[i].classList.remove('hidden')
-    }
-    else if (value === $forms[i].id) {
-      $forms[i].classList.remove('hidden')
+  for (let i = 0; i < $formChoices.length; i++) {
+    if ($formChoices[i].classList.contains(value)) {
+      $form.classList.remove('hidden')
+      $formChoices[i].classList.remove('hidden')
     }
     else {
-      $forms[i].classList.add('hidden')
+      $formChoices[i].classList.add('hidden')
     }
   }
 }
