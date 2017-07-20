@@ -19,17 +19,17 @@ const $expenseBody = document.querySelector('.expense-body')
 function renderExpenseData(data) {
   const $container = document.createElement('tr')
   const $categoryData = document.createElement('td')
-  const $expenseData = document.createElement('td')
+  const $transactionData = document.createElement('td')
   const $dateData = document.createElement('td')
   const $amountData = document.createElement('td')
 
   $categoryData.textContent = data.category
-  $expenseData.textContent = data.item
+  $transactionData.textContent = data.item
   $dateData.textContent = convertDate(data.transaction_date)
   $amountData.textContent = '$ ' + data.amount
 
   $container.appendChild($categoryData)
-  $container.appendChild($expenseData)
+  $container.appendChild($transactionData)
   $container.appendChild($dateData)
   $container.appendChild($amountData)
 
@@ -68,7 +68,7 @@ function updateTotals(expenses) {
 }
 
 
-const $radios = document.querySelectorAll('input[name="form"]')
+const $radios = document.querySelectorAll('input[name="chosen-form"]')
 
 for (let i = 0; i < $radios.length; i++) {
   $radios[i].addEventListener('change', (event) => {
@@ -120,61 +120,26 @@ window.addEventListener('DOMContentLoaded', function (event) {
     })
 })
 
-const $expenseForm = document.querySelector('#expense-form')
+const $transactionForm = document.querySelector('#transaction-form')
 
-// for (let i = 0; i < $forms.length; i++) {
-//   $forms[i].addEventListener('submit'), (event) => {
-//     event.preventDefault()
-//     console.log('Submitting form')
-//
-//     const expenseData = new FormData($forms[i])
-//
-//     const date = new Date(expenseData.get('transactionDate'))
-//     const numericDate = date.getTime()
-//
-//     const newExpense = {
-//       category_id: expenseData.get('category'),
-//       item: expenseData.get('expenseItem'),
-//       transaction_date: numericDate,
-//       amount: expenseData.get('amount'),
-//       type: 'expense'
-//     }
-//
-//     fetch('/expenditures', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(newExpense)
-//     })
-//     .then(res => res.json())
-//     .then(data => {
-//       $expenseBody.appendChild(renderExpenseData(data))
-//       expenses.push(data)
-//       updateTotals(expenses)
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//     $forms[i].reset()
-//   }
-// }
-
-$expenseForm.addEventListener('submit', (event) => {
+$transactionForm.addEventListener('submit', (event) => {
   event.preventDefault()
   console.log('Submitting form')
 
-  const expenseData = new FormData($expenseForm)
+  const $radioTransaction = document.querySelector('input[name="chosen-form"]:checked')
+  const transactionType = $radioTransaction.value
 
-  const date = new Date(expenseData.get('transactionDate'))
+  const transactionData = new FormData($transactionForm)
+
+  const date = new Date(transactionData.get('transactionDate'))
   const numericDate = date.getTime()
 
   const newExpense = {
-    category_id: expenseData.get('category'),
-    item: expenseData.get('expenseItem'),
+    category_id: transactionData.get(transactionType + '-category'),
+    item: transactionData.get(transactionType + '-item'),
     transaction_date: numericDate,
-    amount: expenseData.get('amount'),
-    // type: 'expense'
+    amount: transactionData.get('amount'),
+    type: transactionType
   }
 
   fetch('/expenditures', {
@@ -186,6 +151,7 @@ $expenseForm.addEventListener('submit', (event) => {
   })
   .then(res => res.json())
   .then(data => {
+    console.log(data)
     $expenseBody.appendChild(renderExpenseData(data))
     expenses.push(data)
     updateTotals(expenses)
@@ -193,5 +159,5 @@ $expenseForm.addEventListener('submit', (event) => {
   .catch(err => {
     console.log(err)
   })
-  $expenseForm.reset()
+  $transactionForm.reset()
 })
