@@ -96,14 +96,11 @@ function appendTotalExpense(total) {
 const $netTotal = document.querySelector('#net-total')
 
 function appendNetTotal(total) {
-  if (total > 0) {
+  if (total >= 0) {
     $netTotal.textContent = '$ ' + total
   }
   else if (total < 0) {
     $netTotal.textContent = '- $ ' + (total * -1)
-  }
-  else if (total = 0) {
-    $netTotal.textContent = '$ ' + total
   }
 }
 
