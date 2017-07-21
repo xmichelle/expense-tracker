@@ -24,6 +24,11 @@ body {
   width: 1000px;
 }
 
+#barChart {
+  width: 400px;
+  height: 400px;
+}
+
 #transaction-form {
   margin: 0 auto;
   padding: 30px 45px 20px;
