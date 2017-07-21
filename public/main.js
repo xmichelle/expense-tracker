@@ -68,16 +68,9 @@ function sum(data) {
 }
 
 
-const $totalExpenses = document.querySelector('#expense-total')
-
-function appendTotalExpense(total) {
-  $totalExpenses.textContent = '$ ' + total
-}
-
-const $totalIncome = document.querySelector('#income-total')
-
-function appendTotalIncome(total) {
-  $totalIncome.textContent = '$ ' + total
+function netTotal(income, expense) {
+  const total = (income - expense)
+  return total
 }
 
 
@@ -88,25 +81,43 @@ function appendTotalTrans(data) {
   $transactions.textContent = total
 }
 
+const $totalIncome = document.querySelector('#income-total')
+
+function appendTotalIncome(total) {
+  $totalIncome.textContent = '$ ' + total
+}
+
+const $totalExpenses = document.querySelector('#expense-total')
+
+function appendTotalExpense(total) {
+  $totalExpenses.textContent = '$ ' + total
+}
+
+// const $netTotal = document.querySelector('#net-total')
+//
+// function appendNetTotal(total) {
+//   if (total > 0) {
+//     $netTotal.textContent = '$ ' + total
+//   }
+//   else if (total < 0) {
+//     $netTotal.textContent = '- $ ' + (total * -1)
+//   }
+//   else if (total = 0) {
+//     $netTotal.textContent = '$ ' + total
+//   }
+// }
+
 
 function updateTotals(expenses) {
   const filteredAmounts = organizeAmounts(expenses)
   const expenseTotal = sum(filteredAmounts.expenseAmounts)
   const incomeTotal = sum(filteredAmounts.incomeAmounts)
-  appendTotalExpense(expenseTotal)
-  appendTotalIncome(incomeTotal)
+  // const net = netTotal(incomeTotal, expenseTotal)
   appendTotalTrans(expenses)
+  appendTotalIncome(incomeTotal)
+  appendTotalExpense(expenseTotal)
+  // appendNetTotal(net)
 }
-
-
-// function formatAmounts(amount, type) {
-//   if (type === 'expense') {
-//     return (amount * -1)
-//   }
-//   else {
-//     return amount
-//   }
-// }
 
 
 const $radios = document.querySelectorAll('input[name="chosen-form"]')
