@@ -27,6 +27,9 @@ function createBarData(element, amounts) {
       }]
     },
     options: {
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [{
           ticks: {
