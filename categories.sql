@@ -14,4 +14,5 @@ VALUES
   ('Utilities'),
   ('Health'),
   ('Education'),
-  ('Miscellaneous');
+  ('Miscellaneous'),
+  ('Income');

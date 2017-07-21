@@ -21,10 +21,10 @@ body {
   margin-right: auto;
   margin-left: auto;
   box-sizing: border-box;
-  width: 750px;
+  width: 1000px;
 }
 
-#expense-form {
+#transaction-form {
   margin: 0 auto;
   padding: 30px 45px 20px;
   position: relative;
@@ -32,6 +32,17 @@ body {
   width: 470px;
   box-sizing: border-box;
   background: rgba(211, 211, 211, 0.5);
+}
+
+.radio-container {
+  width: 470px;
+  margin: 0 auto;
+  position: relative;
+  top: 40px;
+}
+
+#radio-income {
+  margin-left: 30px;
 }
 
 th,
@@ -43,4 +54,8 @@ td {
   margin-top: 80px;
   background-color: rgba(211, 211, 211, 0.6);
   border: 2px outset darkgrey;
+}
+
+.hidden {
+  display: none;
 }

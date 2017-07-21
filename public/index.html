@@ -16,7 +16,7 @@
   </nav>
   <div class="container">
     <div class="row" id="heading">
-      <div class="heading col-md-4">
+      <div class="heading col-md-3">
         <div class="media">
           <div class="media-left media-top icon-container">
             <img class="media-object" src="images/credit-card-icon.png" />
@@ -27,18 +27,18 @@
           </div>
         </div>
       </div>
-      <div class="heading col-md-4">
+      <div class="heading col-md-3">
         <div class="media">
           <div class="media-left media-top icon-container">
             <img class="media-object" src="images/bank-icon-cropped.png" />
           </div>
           <div class="media-body">
             <h5 class="media-heading">Total Income</h5>
-            <h6 class="media-heading" id="income"></h6>
+            <h6 class="media-heading" id="income-total"></h6>
           </div>
         </div>
       </div>
-      <div class="heading col-md-4">
+      <div class="heading col-md-3">
         <div class="media">
           <div class="media-left media-top icon-container">
             <img class="media-object" src="images/minus-icon.png" />
@@ -49,15 +49,41 @@
           </div>
         </div>
       </div>
+      <div class="heading col-md-3">
+        <div class="media">
+          <div class="media-left media-top icon-container">
+            <img class="media-object" src="images/net-total-icon.png" />
+          </div>
+          <div class="media-body">
+            <h5 class="media-heading">Net Amount</h5>
+            <h6 class="media-heading" id="net-total"></h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="container">
-    <form class="form-horizontal" id="expense-form">
-      <div class="form-group">
-        <label for="expenseItem" class="col-sm-2 control-label">Category</label>
+    <div class="panel panel-primary radio-container">
+      <div class="panel-heading">
+        <h3 class="panel-title">Select Type of Form</h3>
+      </div>
+      <div class="panel-body">
+        <label class="radio-inline" id="radio-expense">
+          <input type="radio" name="chosen-form" value="expense" />
+          Expense
+        </label>
+        <label class="radio-inline" id="radio-income">
+          <input type="radio" name="chosen-form" value="income" />
+          Income
+        </label>
+      </div>
+    </div>
+    <form class="form-horizontal hidden" id="transaction-form">
+      <div class="form-group form-choice expense hidden">
+        <label for="expense-category" class="col-sm-2 control-label">Category</label>
         <div class="col-sm-10">
-          <select class="form-control" name="category">
-            <option>Pick a Category</option>
+          <select class="form-control" id="expense-category" name="expense-category">
+            <option value="">Pick a Category</option>
             <option value="1">Transportation</option>
             <option value="2">Leisure</option>
             <option value="3">Groceries</option>
@@ -69,10 +95,25 @@
           </select>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group form-choice income hidden">
+        <label for="income-category" class="col-sm-2 control-label">Category</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="income-category" name="income-category">
+            <option value="">Pick a Category</option>
+            <option value="9">Income</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-choice expense hidden">
         <label for="expenseItem" class="col-sm-2 control-label">Expense</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="expenseItem" name="expenseItem" placeholder="Write a Note">
+          <input type="text" class="form-control" id="expenseItem" name="expense-item" placeholder="Write a Note">
+        </div>
+      </div>
+      <div class="form-group form-choice income hidden">
+        <label for="income-item" class="col-sm-2 control-label">Income</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="income-item" name="income-item" placeholder="Write a Note">
         </div>
       </div>
       <div class="form-group">
@@ -90,9 +131,14 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group form-choice expense hidden">
         <div class="col-sm-offset-9 col-sm-10">
           <button type="submit" class="btn btn-primary">+ Expense</button>
+        </div>
+      </div>
+      <div class="form-group form-choice income hidden">
+        <div class="col-sm-offset-9 col-sm-10">
+          <button type="submit" class="btn btn-primary">+ Income</button>
         </div>
       </div>
     </form>
@@ -102,7 +148,7 @@
       <thead id="expense-head">
         <tr>
           <th scope="col">Category</th>
-          <th scope="col">Expenses</th>
+          <th scope="col">Transactions</th>
           <th scope="col">Transaction Date</th>
           <th scope="col">Amount</th>
         </tr>
