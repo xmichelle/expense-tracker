@@ -93,30 +93,30 @@ function appendTotalExpense(total) {
   $totalExpenses.textContent = '$ ' + total
 }
 
-// const $netTotal = document.querySelector('#net-total')
-//
-// function appendNetTotal(total) {
-//   if (total > 0) {
-//     $netTotal.textContent = '$ ' + total
-//   }
-//   else if (total < 0) {
-//     $netTotal.textContent = '- $ ' + (total * -1)
-//   }
-//   else if (total = 0) {
-//     $netTotal.textContent = '$ ' + total
-//   }
-// }
+const $netTotal = document.querySelector('#net-total')
+
+function appendNetTotal(total) {
+  if (total > 0) {
+    $netTotal.textContent = '$ ' + total
+  }
+  else if (total < 0) {
+    $netTotal.textContent = '- $ ' + (total * -1)
+  }
+  else if (total = 0) {
+    $netTotal.textContent = '$ ' + total
+  }
+}
 
 
 function updateTotals(expenses) {
   const filteredAmounts = organizeAmounts(expenses)
   const expenseTotal = sum(filteredAmounts.expenseAmounts)
   const incomeTotal = sum(filteredAmounts.incomeAmounts)
-  // const net = netTotal(incomeTotal, expenseTotal)
+  const net = netTotal(incomeTotal, expenseTotal)
   appendTotalTrans(expenses)
   appendTotalIncome(incomeTotal)
   appendTotalExpense(expenseTotal)
-  // appendNetTotal(net)
+  appendNetTotal(net)
 }
 
 
