@@ -60,7 +60,6 @@ function categoryAmounts(data) {
     }
   }
   for (let property in categoryTotals) {
-    console.log(property)
     if (categoryTotals.hasOwnProperty(property)) {
       categoryTotalsArray.push(categoryTotals[property])
     }
