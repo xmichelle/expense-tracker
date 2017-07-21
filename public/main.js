@@ -42,6 +42,32 @@ function renderTransactionData(data) {
   return $container
 }
 
+function categoryAmounts(data) {
+  const categoryTotals =
+  { Transportation: 0,
+    Leisure: 0,
+    Groceries: 0,
+    Rent: 0,
+    Utilities: 0,
+    Health: 0,
+    Education: 0,
+    Miscellaneous: 0,
+  }
+  const categoryTotalsArray = []
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].category !== 'Income') {
+      categoryTotals[data[i].category] += Number(data[i].amount)
+    }
+  }
+  for (let property in categoryTotals) {
+    console.log(property)
+    if (categoryTotals.hasOwnProperty(property)) {
+      categoryTotalsArray.push(categoryTotals[property])
+    }
+  }
+  return categoryTotalsArray
+}
+
 
 function organizeAmounts(data) {
   const amounts = { incomeAmounts: [], expenseAmounts: [] }
@@ -115,6 +141,8 @@ function updateTotals(expenses) {
   appendTotalIncome(incomeTotal)
   appendTotalExpense(expenseTotal)
   appendNetTotal(net)
+  const amounts = categoryAmounts(expenses)
+  createBarData(document.querySelector('#barChart'), amounts)
 }
 
 
