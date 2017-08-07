@@ -15,6 +15,7 @@ body {
   height: 65px;
   border: 1.5px double slategray;
   padding: 10px;
+  background-color: white;
 }
 
 #heading {
@@ -24,21 +25,30 @@ body {
   width: 1000px;
 }
 
+.chart-container {
+  margin: 20px auto 10px;
+  width: 850px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px outset darkgrey;
+  background-color: white;
+}
+
 #transaction-form {
   margin: 0 auto;
-  padding: 30px 45px 20px;
-  position: relative;
-  top: 40px;
+  padding: 15px 45px 20px;
   width: 470px;
   box-sizing: border-box;
-  background: rgba(211, 211, 211, 0.5);
 }
 
 .radio-container {
   width: 470px;
   margin: 0 auto;
+}
+
+#form-container {
   position: relative;
-  top: 40px;
+  top: 30px;
 }
 
 #radio-income {
@@ -51,7 +61,7 @@ td {
 }
 
 #expense-table {
-  margin-top: 80px;
+  margin-top: 70px;
   background-color: rgba(211, 211, 211, 0.6);
   border: 2px outset darkgrey;
 }
