@@ -8,10 +8,10 @@ A web app for money-conscious individuals who need to track their expenses.
 ## Setup
 Install [Git](https://git-scm.com/) and [Node](https://nodejs.org/en/).
 
-$ git clone https://github.com/xmichelle/expense-tracker.git
-$ cd expense-tracker
-$ npm install
-$ npm run watch
+    $ git clone https://github.com/xmichelle/expense-tracker.git
+    $ cd expense-tracker
+    $ npm install
+    $ npm run watch
 
 Navigate to [http://localhost:3000/](http://localhost:3000/) in your browser.
 
